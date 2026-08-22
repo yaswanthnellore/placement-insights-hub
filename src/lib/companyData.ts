@@ -139,21 +139,21 @@ export function normalizeCompanySummary(
   companyId = 0,
 ): CompanySummary {
   const j = asRecord(short_json);
-  const year = j.incorporation_year;
+  const year = j["incorporation_year"];
   return {
     companyId,
-    name: asString(j.name) ?? "Unknown Company",
-    shortName: asString(j.short_name) ?? asString(j.name) ?? "Unknown",
-    logoUrl: asString(j.logo_url),
-    category: asString(j.category) ?? "General",
-    companyType: normalizeCompanyType(j.company_type),
+    name: asString(j["name"]) ?? "Unknown Company",
+    shortName: asString(j["short_name"]) ?? asString(j["name"]) ?? "Unknown",
+    logoUrl: asString(j["logo_url"]),
+    category: asString(j["category"]) ?? "General",
+    companyType: normalizeCompanyType(j["company_type"]),
     incorporationYear: typeof year === "number" ? year : null,
-    employeeSize: asString(j.employee_size),
-    headquartersAddress: asString(j.headquarters_address),
-    operatingCountries: asString(j.operating_countries),
-    officeLocations: asString(j.office_locations),
-    yoyGrowthRate: asString(j.yoy_growth_rate),
-    websiteUrl: asString(j.website_url),
+    employeeSize: asString(j["employee_size"]),
+    headquartersAddress: asString(j["headquarters_address"]),
+    operatingCountries: asString(j["operating_countries"]),
+    officeLocations: asString(j["office_locations"]),
+    yoyGrowthRate: asString(j["yoy_growth_rate"]),
+    websiteUrl: asString(j["website_url"]),
   };
 }
 
@@ -383,16 +383,15 @@ export function normalizeDashboardSkills(
   return skillLevels
     .map((raw) => {
       const r = asRecord(raw);
+      const rawLevel = r["required_level"];
       const score =
-        typeof r.required_level === "number"
-          ? r.required_level
-          : Number(asString(r.required_level) ?? 0);
+        typeof rawLevel === "number" ? rawLevel : Number(asString(rawLevel) ?? 0);
+      const rawId = r["skill_set_id"];
       return {
-        skillSetId:
-          typeof r.skill_set_id === "number" ? r.skill_set_id : Number(r.skill_set_id ?? 0),
-        name: asString(r.skill_set_name) ?? "Unnamed Skill",
+        skillSetId: typeof rawId === "number" ? rawId : Number(rawId ?? 0),
+        name: asString(r["skill_set_name"]) ?? "Unnamed Skill",
         score,
-        requiredProficiency: asString(r.required_proficiency) ?? "",
+        requiredProficiency: asString(r["required_proficiency"]) ?? "",
         bloom: proficiencyToBloom(score),
         criticality: scoreToCriticality(score),
         difficulty: scoreToDifficulty(score),

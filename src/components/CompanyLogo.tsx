@@ -33,7 +33,7 @@ export function CompanyLogo({
 }: CompanyLogoProps) {
   const [failed, setFailed] = useState(false);
 
-  const token = import.meta.env.VITE_LOGO_DEV_PUBLISHABLE_KEY as string | undefined;
+  const token = import.meta.env["VITE_LOGO_DEV_PUBLISHABLE_KEY"] as string | undefined;
   const domain = domainFrom(websiteUrl);
   const src =
     token && domain
