@@ -11,7 +11,7 @@ import {
   splitItems,
 } from "./companyData";
 
-const seed = SEED_COMPANIES[0];
+const seed = SEED_COMPANIES[0]!;
 
 describe("company data layer (Phase 1 seed)", () => {
   it("normalizes the company summary", () => {
@@ -32,9 +32,9 @@ describe("company data layer (Phase 1 seed)", () => {
   it("normalizes dashboard skills sorted by required level desc", () => {
     const skills = normalizeDashboardSkills(seed.skill_levels);
     expect(skills).toHaveLength(12);
-    expect(skills[0].score).toBe(8);
-    expect(skills[0].bloom).toBe("EV");
-    expect(skills[0].criticality).toBe("Critical");
+    expect(skills[0]?.score).toBe(8);
+    expect(skills[0]?.bloom).toBe("EV");
+    expect(skills[0]?.criticality).toBe("Critical");
     for (const s of skills) {
       expect(SKILL_TOPICS[s.skillSetId]).toHaveLength(10);
     }
