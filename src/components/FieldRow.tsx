@@ -121,7 +121,7 @@ export function renderValue(value: unknown, type?: string) {
 interface FieldRowProps {
   label: string;
   value: unknown;
-  type?: string;
+  type?: string | undefined;
 }
 
 export function FieldRow({ label, value, type }: FieldRowProps) {
