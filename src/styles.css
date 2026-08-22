@@ -5,17 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
+ * Design system — SRI VENKATESWARA COLLEGE OF ENGINEERING
+ * Placement Intelligence Hub. Enterprise SaaS, light-first.
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Fonts: Outfit (headings) + Inter (body), loaded via <link> in __root.tsx.
+ * All colors use oklch.
  */
 
 @theme inline {
@@ -26,6 +20,10 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -51,6 +49,31 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
+  /* Brand */
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+
+  /* Placement categories (exact brand hues) */
+  --color-super-dream: var(--super-dream);
+  --color-dream: var(--dream);
+  --color-standard: var(--standard);
+  --color-regular: var(--regular);
+
+  /* Bloom taxonomy levels */
+  --color-bloom-cu: var(--bloom-cu);
+  --color-bloom-ap: var(--bloom-ap);
+  --color-bloom-as: var(--bloom-as);
+  --color-bloom-ev: var(--bloom-ev);
+  --color-bloom-cr: var(--bloom-cr);
+
+  /* Difficulty tiers */
+  --color-expert: var(--expert);
+  --color-advanced: var(--advanced);
+  --color-pro: var(--pro);
+  --color-beginner: var(--beginner);
+
+  /* Sidebar */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -59,11 +82,24 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Animations */
+  --animate-glow: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.637 0.237 25.331 / 55%);
+  }
+  50% {
+    box-shadow: 0 0 0 6px oklch(0.637 0.237 25.331 / 0%);
+  }
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --radius: 0.75rem;
+  --background: oklch(0.984 0.003 247.858);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -87,14 +123,38 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+
+  --navy: oklch(0.208 0.042 265.755);
+  --navy-light: oklch(0.279 0.041 260.031);
+
+  /* Super Dream #7c3aed, Dream #2563eb, Standard #16a34a, Regular #d97706 */
+  --super-dream: oklch(0.541 0.281 293.009);
+  --dream: oklch(0.546 0.245 262.881);
+  --standard: oklch(0.627 0.194 149.214);
+  --regular: oklch(0.666 0.179 58.318);
+
+  /* Bloom: CU #3b82f6, AP #22c55e, AS #eab308, EV #ef4444, CR #a855f7 */
+  --bloom-cu: oklch(0.623 0.214 259.815);
+  --bloom-ap: oklch(0.723 0.219 149.579);
+  --bloom-as: oklch(0.795 0.184 86.047);
+  --bloom-ev: oklch(0.637 0.237 25.331);
+  --bloom-cr: oklch(0.627 0.265 303.9);
+
+  /* Difficulty: EXPERT #dc2626, ADVANCED #ea580c, PRO #2563eb, BEGINNER #16a34a */
+  --expert: oklch(0.577 0.245 27.325);
+  --advanced: oklch(0.646 0.222 41.116);
+  --pro: oklch(0.546 0.245 262.881);
+  --beginner: oklch(0.627 0.194 149.214);
+
+  /* Sidebar: bg #F8FAFC, border #E5E7EB, text #334155, active #2563EB on #EFF6FF */
   --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.372 0.044 257.287);
+  --sidebar-primary: oklch(0.546 0.245 262.881);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sidebar-accent: oklch(0.97 0.014 254.604);
+  --sidebar-accent-foreground: oklch(0.546 0.245 262.881);
+  --sidebar-border: oklch(0.928 0.006 264.531);
+  --sidebar-ring: oklch(0.546 0.245 262.881);
 }
 
 .dark {
@@ -122,6 +182,26 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+
+  --navy: oklch(0.929 0.013 255.508);
+  --navy-light: oklch(0.84 0.02 258);
+
+  --super-dream: oklch(0.606 0.25 292.717);
+  --dream: oklch(0.623 0.214 259.815);
+  --standard: oklch(0.723 0.219 149.579);
+  --regular: oklch(0.769 0.188 70.08);
+
+  --bloom-cu: oklch(0.623 0.214 259.815);
+  --bloom-ap: oklch(0.723 0.219 149.579);
+  --bloom-as: oklch(0.795 0.184 86.047);
+  --bloom-ev: oklch(0.637 0.237 25.331);
+  --bloom-cr: oklch(0.627 0.265 303.9);
+
+  --expert: oklch(0.637 0.237 25.331);
+  --advanced: oklch(0.705 0.213 47.604);
+  --pro: oklch(0.623 0.214 259.815);
+  --beginner: oklch(0.723 0.219 149.579);
+
   --sidebar: oklch(0.208 0.042 265.755);
   --sidebar-foreground: oklch(0.984 0.003 247.858);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -137,8 +217,23 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
   }
 }
